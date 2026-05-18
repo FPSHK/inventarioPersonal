@@ -33,12 +33,12 @@
                 <td>{{ item.fecha_adquisicion or '—' }}</td>
                 <td>
                     <a href="{{ url_for('main.editar_item', id=item.id) }}" class="btn btn-sm btn-warning">✏️ Editar</a>
-                    <!-- Leve debug: Cambie el enlace por un formulario POST para resolver error 405-->
-                    <form method="POST" action="{{ url_for('main.eliminar_item', id=item.id) }}"
-                        style="display: line"
+                    <!-- Form POST en vez de <a href>, la ruta "eliminar_item" solo acepta POST-->
+                <form method="POST" action="{{ url_for('main.eliminar_item', id=item.id) }}"
+                        style="display: inline;"
                         onsubmit="return confirm('¿Estás seguro de eliminar este item?')">
                     <button type="submit" class="btn btn-sm btn-danger">🗑️</button>
-                    </form>
+                </form>
                 </td>
             </tr>
             {% endfor %}
