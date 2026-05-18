@@ -24,13 +24,13 @@ def cambiar_password():
     if form.validate_on_submit():
         #Verifica que la contraseña actual sea correcta
         if not current_user.check_password(form.old_password.data):
-            flash('Current password is incorrect')
+            flash('Current password is incorrect', 'danger')
             return render_template('cambiar_password.html', form=form)
         
         #Actualiza contraseña y guarda 
         current_user.set_password(form.new_password.data)
         db.session.commit()
-        flash(' Password updated successfully.')
+        flash(' Password updated successfully.', 'success')
         return redirect(url_for('main.dashboard'))
 
     return render_template('cambiar_password.html', form=form)
@@ -67,7 +67,7 @@ def items():
         )
         db.session.add(item)
         db.session.commit()
-        flash("Item created successfully.")
+        flash("Item created successfully.", 'success')
         return redirect(url_for('main.dashboard'))
 
     return render_template('item_form.html', form=form )
@@ -83,7 +83,7 @@ def editar_item(id):
     #validar permisos
     if current_user.role.name not in ['Admin', 'Owner'] or (
         item.owner_id != current_user.id and current_user.role.name != 'Admin'):
-        flash('You do not have permission to edit this item.')
+        flash('You do not have permission to edit this item.', 'danger')
         return redirect(url_for('main.dashboard'))
     
     form = ItemForm(obj=item)
@@ -96,7 +96,7 @@ def editar_item(id):
         item.ubicacion = form.ubicacion.data
         item.fecha_adquisicion = form.fecha_adquisicion.data
         db.session.commit()
-        flash("Item updated successfully")
+        flash("Item updated successfully", 'success')
         return redirect(url_for('main.dashboard'))
     
     return render_template('item_form.html', form=form, editar=True)
@@ -111,12 +111,12 @@ def eliminar_item(id):
 
     if current_user.role.name not in ['Admin', 'Owner'] or (
         item.owner_id != current_user.id and current_user.role.name != 'Admin'):
-        flash('You do not have permission to delete this item')
+        flash('You do not have permission to delete this item', 'danger')
         return redirect(url_for('main.dashboard'))
     
     db.session.delete(item)
     db.session.commit()
-    flash("Item deleted successfully")
+    flash("Item deleted successfully", 'success')
     return redirect(url_for('main.dashboard'))
 
 @main.route('/usuarios')
@@ -126,7 +126,7 @@ def listar_usuarios():
     Lista todos los usuarios del sistema. Solo accesible para el rol Admin
     """
     if current_user.role.name != 'Admin':
-        flash("You do not have permission to view this page")
+        flash("You do not have permission to view this page", 'danger')
         return redirect(url_for('main.dashboard'))
     
     #Obtener instancias completas de usuarios con sus roles
