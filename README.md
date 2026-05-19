@@ -113,5 +113,5 @@ from app.routes import main
 
 | Nombre                            | GitHub                              |
 |-----------------------------------|-------------------------------------|
-| Janiel Valentin Nieves (Y00661894)| https://github.com/ALLTRIU   ------ |
-| Jadriel (R00667434)               | https://github.com/FPSHK     ------ |
+| Janiel Valentin Nieves (Y00661894)| https://github.com/ALLTRIU          |
+| Jadriel (R00667434)               | https://github.com/FPSHK            |
