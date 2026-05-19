@@ -15,7 +15,7 @@ class Config:
     #Ejemplo para MySQl usando PyMySQL (puede adaptarse a PostgreSQL o SQLLite)
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         'DATABASE_URL',
-        'mysql+pymysql://root:root@localhost/inventario_personal' #Valor por defecto para entorno local (MAMP/XAMPP)
+        'mysql+pymysql://root:@localhost/inventario_personal' #Valor por defecto para entorno local (MAMP/XAMPP)
 
     )
 
