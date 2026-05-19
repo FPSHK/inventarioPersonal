@@ -30,8 +30,10 @@ cd inventario_personal
 
 ```
 python -m venv venv
+# Windows
 venv\Scripts\activate.bat
-source venv/bin/activate   # Solo en Linux/Mac requiere esto
+# Mac/Linux
+source venv/bin/activate 
 ```
 
 3. Instalar dependencias
@@ -64,9 +66,9 @@ Abrir en el navegador: http://127.0.0.1:5000
 
 | Rol     | Email                 | Contrasena |
 |---------|-----------------------|------------|
-| Admin   | admin@example.com     | admin123   |
+| Admin   | admin@example.com     | admin1234  |
 | Owner   | owner@example.com     | owner123   |
-| Usuario | user@example.com      | user123    |
+| Usuario | user@example.com      | user12     |
 
 ## Archivos del proyecto
 
@@ -93,9 +95,23 @@ Abrir en el navegador: http://127.0.0.1:5000
 | pruebas/                            | Scripts de prueba (REST Client)                  |
 | .gitignore                          | Archivos excluidos del control de versiones      |
 
+## Pruebas del CRUD (endpoints REST)
+
+Para probar los endpoints REST con los archivos en la carpeta `pruebas/`, modificar las lineas 17-18 de `app/__init__.py`:
+
+# from app.routes import main
+from app.test_routes import main
+
+Despues reiniciar el servidor con `python run.py`. Los archivos `.rest` se ejecutan con la extension REST Client de VS Code.
+
+Despues de finalizar las pruebas, regresar `__init__.py` a su estado original:
+
+from app.routes import main
+# from app.test_routes import main
+
 ## Integrantes
 
 | Nombre                            | GitHub                              |
 |-----------------------------------|-------------------------------------|
 | Janiel Valentin Nieves (Y00661894)| https://github.com/ALLTRIU   ------ |
-| Jadriel (R000XXXXXX)              | https://github.com/USUARIO_COMPANERO|
+| Jadriel (R00667434)               | https://github.com/FPSHK     ------ |
